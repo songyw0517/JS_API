@@ -98,3 +98,38 @@ function Simple_Login(){
 function Logout(){
   localStorage.clear()
 }
+function seoJS(){
+  //////////////////////////
+  //////////////API 요청하는 곳
+  ///////////////////////////
+  var id = document.querySelector('#id').value;
+  var pw = document.querySelector('#pw').value;
+
+  var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
+
+  xmlHttp.onreadystatechange = function() { // onreadystatechange 이벤트 핸들러를 작성함.
+      // 서버상에 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 완료되었을 때
+      if(this.status == 200 && this.readyState == 4) {
+        var temp = JSON.parse(xmlHttp.response)
+        if (temp['result']=="success"){
+          localStorage.setItem('access_token', temp['access_token']);
+        }
+        // 요청한 데이터를 문자열로 반환함          
+      }
+  };
+
+  xmlHttp.open("POST", "http://127.0.0.1:5000//xmlRequest", false);
+  xmlHttp.send();
+  }
+/* 메소드 : get
+ * 주소 : ~
+ * 인자 : 
+ *  body : ~
+ *  header :~
+ * 반환값 : ~
+ *
+ * 토큰을 받아서 저장해서 
+ * api를 호출해서 처리해라
+ * 
+ * 
+ */
