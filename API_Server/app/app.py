@@ -80,7 +80,11 @@ def Check_Token():
     else:
         return "Hi!," + cur_user
     '''
-    
+@app.route('/xmlRequest', methods = ['POST'])
+def xmlRequest():
+    data = request.get_json()
+    print(data)
+    return data
 if __name__== '__main__':
     app.run(debug=True)
 
